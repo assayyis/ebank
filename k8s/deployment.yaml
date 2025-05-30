@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ebank-api
+  labels:
+    app: ebank-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ebank-api
+  template:
+    metadata:
+      labels:
+        app: ebank-api
+    spec:
+      containers:
+        - name: ebank-api
+          image: ebank-api:local
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: ebank-config
+            - secretRef:
+                name: ebank-secrets
