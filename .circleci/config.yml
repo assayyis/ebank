@@ -3,7 +3,7 @@ version: 2.1
 executors:
   java-executor:
     docker:
-      - image: openjdk:17-jdk-slim
+      - image: cimg/maven:3.8.6
     working_directory: ~/repo
 
   docker-executor:
